@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquete App</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 5em;
+            margin-left: 1em;
+        }
+        input, label {
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Qual maior ídolo da história do Vasco?</h1>
+    </header>
+    <main>
+        <form action = "{% url 'enquete:resultado' %}" method="POST"> <!-- trocar a URL do action pelo name associada a view no urls.py, ex: action = "{{ resultado }}" -->
+            <!-- esse enquete: é por causa do app_name no urls.py, para que eu possa ter names nos paths iguais entre apps sem conflitar -->
+            {% csrf_token %} <!-- proteger contra phishing mandando de um dominio para o mesmo e bloqueando caso não seja -->
+            <input type = "radio" id = "Dinamite" name = "radio" value = "0">
+            <label for = "Dinamite">Roberto Dinamite</label>
+            <br>
+            <input type = "radio" id = "Romario" name = "radio" value = "1">
+            <label for = "Romario">Romário</label>
+            <br>
+            <input type = "radio" id = "Edmundo" name = "radio" value = "2">
+            <label for = "Edmundo">Edmundo</label>
+            <br>
+            <input type = "radio" id = "Barbosa" name = "radio" value = "3">
+            <label for = "Barbosa">Barbosa</label>
+            <br>
+            <button type = "submit" value = "Enviar">Enviar</button>
+        </form>
+    </main>
+</body>
+</html>
